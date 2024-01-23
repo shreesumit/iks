@@ -1,0 +1,29 @@
+nav {
+    background: linear-gradient(to right, #f0f1f7 25%, black 20%, black);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px;
+}
+
+.logo-list,
+.user-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.user-list .userimg {
+    border-radius: 50%;
+    margin-right: 8px;
+}
+.subHeader {
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 4px 16px;
+}

@@ -1,0 +1,142 @@
+<div class="formdiv">
+    <form [formGroup]="registrationForm" (ngSubmit)="register()">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="first Name">First Name</label>
+                    <input type="text" placeholder="First Name" formControlName="first_name" name="first_name" class="form-control" required />
+                </div>
+                <span class="errorMsg" *ngIf="first_name && first_name.invalid && first_name.touched">Enter First Name
+                </span>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="first Name">Last Name</label>
+                    <input type="text" placeholder="Last Name" formControlName="last_name" name="last_name" class="form-control" required />
+                </div>
+                <span class="errorMsg" *ngIf="last_name && last_name.invalid && last_name.touched">Enter Last Name
+                </span>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select class="form-select" formControlName="gender" name="gender"
+                        aria-label="Default select example">
+                        <option value="" disabled selected>Please select</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <span class="errorMsg" *ngIf="gender && gender.invalid && gender.touched">Enter Gender
+                </span>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="first Name">Contact Number </label>
+                    <input type="text" placeholder="+911111111111" formControlName="phone_number" name="phone_number" class="form-control"
+                        required />
+                </div>
+                <span class="errorMsg" *ngIf="phone_number && phone_number.invalid && phone_number.touched">Enter Contact Number
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="first Name">Email ID</label>
+                    <input type="email" placeholder="emailid@gmail.com" formControlName="email" name="email" class="form-control" required />
+                </div>
+                <span class="errorMsg" *ngIf="email && email.invalid && email.touched">Enter Email ID
+                </span>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="first Name">Designation</label>
+                    <input type="text" placeholder="Designation" formControlName="designation" name="designation" class="form-control" required />
+                </div>
+                <span class="errorMsg" *ngIf="designation && designation.invalid && designation.touched">Enter Designation
+                </span>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="gender">Date of Birth </label>
+                    <input type="date" (change)="calculateAge($event)" formControlName="dob_date" class="form-control"
+                        name="dob_date" />
+                </div>
+                <span class="errorMsg" *ngIf="dob_date && dob_date.invalid && dob_date.touched">Enter Date of Birth
+                </span>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="first Name">Populate age as per DOB </label>
+                    <input type="text" placeholder="Populate age" formControlName="age" name="age" class="form-control" required />
+                </div>
+                <span class="errorMsg" *ngIf="age && age.invalid && age.touched">Enter Age
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="first Name">Upload Photo</label>
+                    <input type="file" (change)="getfile($event)" formControlName="photo" name="photo"
+                        class="form-control" required />
+                </div>
+                <span class="errorMsg" *ngIf="photo && photo.invalid && photo.touched">Upload Photo
+                </span>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="gender">Country</label>
+                    <select class="form-select" (change)="getStates($event)" formControlName="country" name="country"
+                        aria-label="Default select example">
+                        <option value="" disabled selected>Please select</option>
+                        <option *ngFor="let country of countries" [value]="country.country_id">
+                            {{ country.country_name }}
+                        </option>
+                    </select>
+                </div>
+                <span class="errorMsg" *ngIf="country && country.invalid && country.touched">Select Country
+                </span>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="gender">State </label>
+                    <select class="form-select" (change)="getCities($event)" formControlName="state" name="state"
+                        aria-label="Default select example">
+                        <option value="" disabled selected>Please select</option>
+                        <option *ngFor="let state of states" [value]="state.state_id">
+                            {{ state.state_name }}
+                        </option>
+                    </select>
+                </div>
+                <span class="errorMsg" *ngIf="state && state.invalid && state.touched">Select State
+                </span>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="gender">City</label>
+                    <select class="form-select" formControlName="city" name="city" aria-label="Default select example">
+                        <option value="" disabled selected>Please select</option>
+                        <option *ngFor="let city of cities" [value]="city.city_name">
+                            {{ city.city_name }}
+                        </option>
+                    </select>
+                </div>
+                <span class="errorMsg" *ngIf="city && city.invalid && city.touched">Select City
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="pincode">Pincode</label>
+                    <input type="text" placeholder="Pincode" formControlName="pincode" name="Pincode" class="form-control" required />
+                </div>
+            </div>
+            <span class="errorMsg" *ngIf="pincode && pincode.invalid && pincode.touched">Enter Pincode
+            </span>
+        </div>
+        <button type="submit" [disabled]="registrationForm.invalid" class="btn btn-primary">Save</button>
+    </form>
+</div>

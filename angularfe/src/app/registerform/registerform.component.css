@@ -1,0 +1,9 @@
+.formdiv {
+    margin: 15px;
+    padding: 11px;
+    background-color: white;
+}
+span.errorMsg {
+    color: red;
+    font-size: smaller;
+}

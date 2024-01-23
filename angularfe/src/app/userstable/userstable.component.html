@@ -1,0 +1,156 @@
+<div class="serchBar"><div></div><input class="search"  style="margin-right: 10px;" placeholder=' Filter' type="text"></div>
+<div class="parentDiv">
+    <div class="row tablefit">
+        <table class="table table-bordered ">
+            <thead >
+                <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Contact Number</th>
+                    <th scope="col">Email ID</th>
+                    <th scope="col">Designation</th>
+                    <th scope="col">DOB</th>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Country</th>
+                    <th scope="col">State</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Pincode</th>
+                    <th scope="col">Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td scope="row">{{user.first_name}}</td>
+                    <td>{{user.last_name}}</td>
+                    <td>{{user.gender}}</td>
+                    <td>{{user.phone_number}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.designation}}</td>
+                    <td>{{getDate(user.dob_date)}}</td>
+                    <td><img src="http://localhost:4000/images/{{user.photo}}" height="30px" width="30px" alt=""> </td>
+                    <td>{{user.country}}</td>
+                    <td>{{user.state}}</td>
+                    <td>{{user.city}}</td>
+                    <td>{{user.pincode}}</td>
+                    <td (click)="prefillForm(user.id)"><i class="fa-solid fa-eye"></i></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div *ngIf="show">
+    <div class="formdiv2">
+        <h4>User Details</h4>
+        <form [formGroup]="registrationForm" (ngSubmit)="register()">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="first Name">First Name</label>
+                        <input type="text" formControlName="first_name" name="first_name" class="form-control"
+                            required />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="first Name">last Name</label>
+                        <input type="text" formControlName="last_name" name="last_name" class="form-control" required />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select class="form-select" formControlName="gender" name="gender"
+                            aria-label="Default select example">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="first Name">Contact Number </label>
+                        <input type="text" formControlName="phone_number" name="phone_number" class="form-control"
+                            required />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="first Name">Email ID</label>
+                        <input type="email" formControlName="email" name="email" class="form-control" required />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="first Name">Designation</label>
+                        <input type="text" formControlName="designation" name="designation" class="form-control"
+                            required />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="gender">Date of Birth </label>
+                        <input type="date" (change)="calculateAge($event)" formControlName="dob_date"
+                            class="form-control" name="dob_date">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="first Name">Populate age as per DOB </label>
+                        <input type="text" formControlName="age" name="age" class="form-control" required />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="first Name">Upload Photo</label>
+                        <input type="file" (change)="getfile($event)" formControlName="photo" name="photo"
+                            class="form-control" required />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="gender">Country</label>
+                        <select class="form-select" (change)="getStates($event)" formControlName="country"
+                            name="country" aria-label="Default select example">
+                            <option *ngFor="let country of countries" [value]="country.country_id">{{
+                                country.country_name }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="gender">State </label>
+                        <select class="form-select" (change)="getCities($event)" formControlName="state" name="state"
+                            aria-label="Default select example">
+                            <option *ngFor="let state of states" [value]="state.state_id">{{ state.state_name }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="gender">City</label>
+                        <select class="form-select" formControlName="city" name="city"
+                            aria-label="Default select example">
+                            <option *ngFor="let city of cities" [value]="city.city_name">{{city.city_name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="first Name">Pincode</label>
+                        <input type="pincode" formControlName="pincode" name="pincode" class="form-control" required />
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button> <button style="margin-left: 20px;"
+                (click)="closeModel()" class="btn btn-primary">Close</button>
+        </form>
+    </div>
+</div>
