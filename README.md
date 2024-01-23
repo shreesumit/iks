@@ -1,4 +1,4 @@
-# IksTask 
+# How to run the code 
 
 ## Setup:-
 In zip folder there will be three folder angularfe , nodejs, database file
