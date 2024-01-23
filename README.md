@@ -1,6 +1,6 @@
-#IksTask 
+# IksTask 
 
-##Setup:-
+## Setup:-
 In zip folder there will be three folder angularfe , nodejs, database file
 and in angularfe and backup folder run `npm i` for install all packages and dependencies
 
@@ -33,7 +33,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 
-#Backend
+# Backend
 
 ## Development server
 Run   `nodemon` command in terminal and development server be will started
@@ -41,5 +41,5 @@ Run   `nodemon` command in terminal and development server be will started
 ## Mention database details
 to connect with database insert your database details in connection.js file
 
-#Database
+# Database
 Import sql database in mysql workbench or php admin
